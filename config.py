@@ -1,4 +1,4 @@
-import texar as tx
+import texar.tf as tx
 dcoder_config = {
     'dim': 768,
     'num_blocks': 6,
