@@ -89,13 +89,13 @@ class CNNDailymail(DataProcessor):
     def get_train_examples(self, data_dir):
         """See base class."""
         return self._create_examples(
-            self._read_file(os.path.join(data_dir, "train_story.txt")),self._read_file(os.path.join(data_dir, "train_summ.txt")),
+            self._read_file(os.path.join(data_dir, "/content/text-summarization-with-colab/data/train_story.txt")),self._read_file(os.path.join(data_dir, "/content/text-summarization-with-colab/data/train_summ.txt")),
             "train")
 
     def get_dev_examples(self, data_dir):
         """See base class."""
         return self._create_examples(
-            self._read_file(os.path.join(data_dir, "eval_story.txt")),self._read_file(os.path.join(data_dir, "eval_summ.txt")),
+            self._read_file(os.path.join(data_dir, "/content/text-summarization-with-colab/data/eval_story.txt")),self._read_file(os.path.join(data_dir, "/content/text-summarization-with-colab/data/eval_summ.txt")),
             "dev")
 
     def get_test_examples(self, data_dir):
@@ -342,7 +342,7 @@ def get_dataset(processor,
     #label_list = processor.get_labels()
     if mode == 'train':
         train_examples = processor.get_train_examples(data_dir)
-        train_file = os.path.join(output_dir, "train.tf_record")
+        train_file = os.path.join(output_dir, "/content/text-summarization-with-colab/data/train.tf_record")
         
         file_based_convert_examples_to_features(
             train_examples, max_seq_length_src,max_seq_length_tgt,
@@ -356,7 +356,7 @@ def get_dataset(processor,
             is_distributed=is_distributed)({'batch_size': batch_size})
     elif mode == 'eval':
         eval_examples = processor.get_dev_examples(data_dir)
-        eval_file = os.path.join(output_dir, "eval.tf_record")
+        eval_file = os.path.join(output_dir, "/content/text-summarization-with-colab/data/eval.tf_record")
         
         file_based_convert_examples_to_features(
             eval_examples, max_seq_length_src,max_seq_length_tgt,
@@ -389,7 +389,7 @@ def get_dataset(processor,
 
 if __name__=="__main__":
     tokenizer = tokenization.FullTokenizer(
-        vocab_file=os.path.join(bert_pretrain_dir, 'vocab.txt'),
+        vocab_file=os.path.join('/content/text-summarization-with-colab/uncased_L-12_H-768_A-12/vocab.txt'),
         do_lower_case=True)
 
     vocab_size = len(tokenizer.vocab)
